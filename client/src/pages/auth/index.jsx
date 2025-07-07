@@ -113,93 +113,95 @@ const Auth = () => {
     
     
 
-   return (
+  return (
   <div
-  className="min-h-screen w-full bg-cover bg-center relative"
-  style={{
-    backgroundImage: `url('\loginc.jpg')`, // 🔁 Replace with your image path
-  }}
->
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/60 z-0" />
+    className="min-h-screen w-full bg-cover bg-center relative"
+    style={{ backgroundImage: `url('/loginc.jpg')` }}
+  >
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-black/70 z-0" />
 
-  {/* Login Content */}
-  <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-    <div className="bg-white/10 backdrop-blur-md border border-white/10 shadow-2xl rounded-3xl w-full max-w-4xl grid grid-cols-1 xl:grid-cols-[2fr_1.5fr] overflow-hidden">
+    {/* Login Content */}
+    <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-3xl w-full max-w-4xl grid grid-cols-1 xl:grid-cols-[2fr_1.3fr] overflow-hidden">
 
-      {/* Left - Form Area */}
-      <div className="p-8 flex flex-col gap-10 items-center justify-center">
-        <div className="text-center space-y-3">
-          <h1 className="text-white text-4xl sm:text-5xl font-bold flex items-center justify-center gap-2">
-            Welcome <img src={Victory} alt="Victory" className="h-10 w-10 sm:h-12 sm:w-12" />
-          </h1>
-          <p className="text-gray-300 text-sm sm:text-base">Fill in the details to get started with the Chatter Hub</p>
-        </div>
+        {/* Left - Form Area */}
+        <div className="p-8 sm:p-12 flex flex-col gap-10 items-center justify-center">
+          <div className="text-center space-y-3">
+            <h1 className="text-white text-4xl sm:text-5xl font-bold flex items-center justify-center gap-3">
+              Welcome <img src={Victory} alt="Victory" className="h-10 w-10 sm:h-12 sm:w-12" />
+            </h1>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Sign in to continue with <strong>Chatter Hub</strong>
+            </p>
+          </div>
 
-        <Tabs className="w-full max-w-md" defaultValue="login">
-          <TabsList className="flex justify-around bg-transparent">
-            <TabsTrigger
-              value="login"
-              className="text-white border-b-2 border-transparent w-full py-2 transition-all data-[state=active]:border-blue-500 data-[state=active]:text-blue-400 font-medium"
-            >
-              Login
-            </TabsTrigger>
-            <TabsTrigger
-              value="signup"
-              className="text-white border-b-2 border-transparent w-full py-2 transition-all data-[state=active]:border-blue-500 data-[state=active]:text-blue-400 font-medium"
-            >
-              Signup
-            </TabsTrigger>
-          </TabsList>
+          <Tabs className="w-full max-w-md" defaultValue="login">
+            <TabsList className="flex justify-around bg-transparent rounded-full border border-white/20">
+              <TabsTrigger
+                value="login"
+                className="w-full py-3 px-5 text-white font-medium transition-all rounded-full data-[state=active]:bg-gradient-to-r from-blue-500 to-indigo-600 data-[state=active]:shadow-lg data-[state=active]:text-white"
+              >
+                Login
+              </TabsTrigger>
+              <TabsTrigger
+                value="signup"
+                className="w-full py-3 px-5 text-white font-medium transition-all rounded-full data-[state=active]:bg-gradient-to-r from-blue-500 to-indigo-600 data-[state=active]:shadow-lg data-[state=active]:text-white"
+              >
+                Signup
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="login" className="mt-6 flex flex-col gap-5">
-            <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
-            />
-            <Input
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
-            />
-            <Button
-              onClick={handleLogin}
-              className="rounded-full px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold"
-            >
-              Login
-            </Button>
-          </TabsContent>
+            {/* Login Form */}
+            <TabsContent value="login" className="mt-6 flex flex-col gap-5">
+              <Input
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="rounded-full px-6 py-4 bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:ring-2 focus:ring-blue-400"
+              />
+              <Input
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="rounded-full px-6 py-4 bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:ring-2 focus:ring-blue-400"
+              />
+              <Button
+                onClick={handleLogin}
+                className="rounded-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              >
+                Login
+              </Button>
+            </TabsContent>
 
-          <TabsContent value="signup" className="mt-6 flex flex-col gap-5">
-            <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
-            />
-            <Input
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
-            />
+            {/* Signup Form */}
+            <TabsContent value="signup" className="mt-6 flex flex-col gap-5">
+              <Input
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="rounded-full px-6 py-4 bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:ring-2 focus:ring-indigo-400"
+              />
+              <Input
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="rounded-full px-6 py-4 bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:ring-2 focus:ring-indigo-400"
+              />
             <Input
               placeholder="Confirm Password"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+              className="rounded-full px-6 py-4 bg-white/10 text-white placeholder:text-white/60 border border-white/20 focus:ring-2 focus:ring-indigo-400"
             />
             <Button
               onClick={handleSignup}
-              className="rounded-full px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold"
+              className="rounded-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold"
             >
               Signup
             </Button>
