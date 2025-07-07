@@ -96,60 +96,74 @@ const MessageBar = () => {
     };
 
     return (
-        <div className="min-h-[10vh] bg-[#fcfdfd] flex items-center justify-center px-8 gap-6 
-        sticky bottom-0 w-full border-t border-gray-100 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.1)]">
+  <div className="sticky bottom-0 z-50 w-full bg-[#fcfdfd] border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.1)] px-3 py-2 sm:px-6">
+    <div className="flex items-center gap-3 sm:gap-4">
+      {/* Input Container */}
+      <div className="flex-1 flex items-center bg-white rounded-full border border-black/20 px-4 sm:px-5 py-2 sm:py-3">
+        <input
+          type="text"
+          className="flex-1 bg-transparent text-sm sm:text-base text-black focus:outline-none placeholder-gray-500"
+          placeholder="Type a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && message.trim() !== "") {
+              handleSendMessage();
+            }
+          }}
+        />
 
-            
-            <div className="flex-1 flex bg-[#ffffff] rounded-full px-4 items-center border border-black/80 gap-5 pr-5">
-                <input 
-                    type="text" 
-                    className="flex-1 p-4 bg-transparent rounded-md text-black 
-                    focus:border-none focus:outline-none"
-                    placeholder="Type a message..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={(e) => {
-    if (e.key === "Enter" && message.trim() !== "") {
-      handleSendMessage();
-    }
-  }}
-                />
-    
-                <button className="text-neutral-500 hover:text-white transition-all duration-300" onClick={handleAttachmentClick}>
-                    <GrAttachment className="text-2xl" />
-                </button>
-                <input type="file" className="hidden" ref={fileInputRef} onChange={handleAttachmentChange}/>
-    
-                <div className="relative">
-                    <button 
-                        className="text-neutral-500 hover:text-white transition-all duration-300"
-                        onClick={() => setEmojiPickerOpen(true)}
-                    >
-                        <RiEmojiStickerLine className="text-2xl" />
-                    </button>
-                    
-                    {emojiPickerOpen && (
-                        <div className="absolute bottom-16 right-0" ref={emojiRef}>
-                            <EmojiPicker 
-                                theme="dark" 
-                                open={emojiPickerOpen}
-                                onEmojiClick={handleAddEmoji} 
-                                autoFocusSearch={false}
-                            />
-                        </div>
-                    )}
-                </div>
+        {/* Attachment Button */}
+        <button
+          className="text-gray-500 hover:text-black transition mr-2"
+          onClick={handleAttachmentClick}
+        >
+          <GrAttachment className="text-xl sm:text-2xl" />
+        </button>
+        <input
+          type="file"
+          className="hidden"
+          ref={fileInputRef}
+          onChange={handleAttachmentChange}
+        />
+
+        {/* Emoji Button */}
+        <div className="relative">
+          <button
+            className="text-gray-500 hover:text-black transition"
+            onClick={() => setEmojiPickerOpen(true)}
+          >
+            <RiEmojiStickerLine className="text-xl sm:text-2xl" />
+          </button>
+          {emojiPickerOpen && (
+           <div
+  className="absolute bottom-[60px] right-0 z-50 w-[70vw] sm:w-[350px] overflow-hidden"
+  ref={emojiRef}
+>
+
+
+              <EmojiPicker
+                theme="dark"
+                open={emojiPickerOpen}
+                onEmojiClick={handleAddEmoji}
+                autoFocusSearch={false}
+              />
             </div>
-    
-           <button
-      onClick={handleSendMessage}
-      className="bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 p-3 sm:p-4 rounded-full shadow-lg"
-    >
-      <IoSend className="text-white text-xl sm:text-2xl" />
-    </button>
-
+          )}
         </div>
-    );
+      </div>
+
+      {/* Send Button */}
+      <button
+        onClick={handleSendMessage}
+        className="p-3 sm:p-4 bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-full shadow-lg"
+      >
+        <IoSend className="text-white text-xl sm:text-2xl" />
+      </button>
+    </div>
+  </div>
+);
+
     
 }
 

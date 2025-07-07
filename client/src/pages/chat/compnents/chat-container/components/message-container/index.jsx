@@ -166,7 +166,8 @@ const MessageContainer = () => {
   );
 
  return (
-  <div className="flex-1 overflow-y-auto scrollbar-hidden p-4 px-4 md:px-8 w-full bg-[#f9fafb] dark:bg-[#121212]">
+ <div className="h-full overflow-y-auto p-4 px-4 md:px-8 w-full bg-[#f9fafb] dark:bg-[#121212]">
+
     {renderMessages()}
     <div ref={scrollRef} className="h-1" />
 
