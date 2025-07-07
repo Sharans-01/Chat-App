@@ -113,83 +113,110 @@ const Auth = () => {
     
     
 
-    return (
-        <div className="h-[100vh] w-[100vw] flex items-center justify-center">
-            <div className="h-[90vh] bg-white border-2 border-white text-opacity-90 shadow-2xl w-[80vw] md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2">
-                <div className="flex flex-col gap-10 items-center justify-center">
-                    <div className="flex items-center justify-center flex-col">
-                        <div className="flex items-center justify-center">
-                            <h1 className="text-5xl font-bold md:text-6xl">Welcome</h1>
-                            <img src={Victory} alt="victory emoji" className="h-[100px] w-[100px]" />
-                        </div>
-                        <p className="font-medium text-center">Fill in the details to get started with the best chat app</p>
-                    </div>
-                    <div className="flex items-center justify-center w-full">
-                        <Tabs className="w-3/4" defaultValue="login">
-                            <TabsList className="bg-transparent rounded-none w-full">
-                                <TabsTrigger
-                                    value="login"
-                                    className="data-[state=active]:bg-transparent text-black text-opacity-90 border-b-2 rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
-                                >
-                                    Login
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="signup"
-                                    className="data-[state=active]:bg-transparent text-black text-opacity-90 border-b-2 rounded-none w-full data-[state=active]:text-black data-[state=active]:font-semibold data-[state=active]:border-b-purple-500 p-3 transition-all duration-300"
-                                >
-                                    Signup
-                                </TabsTrigger>
-                            </TabsList>
-                            <TabsContent className="flex flex-col gap-5 mt-10" value="login">
-                                <Input
-                                    placeholder="Email"
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="rounded-full p-6"
-                                />
-                                <Input
-                                    placeholder="Password"
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="rounded-full p-6"
-                                />
-                                <Button className="rounded-full p-6" onClick={handleLogin}>Login</Button>
-                            </TabsContent>
-                            <TabsContent className="flex flex-col gap-5" value="signup">
-                                <Input
-                                    placeholder="Email"
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="rounded-full p-6"
-                                />
-                                <Input
-                                    placeholder="Password"
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="rounded-full p-6"
-                                />
-                                <Input
-                                    placeholder="Confirm Password"
-                                    type="password"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="rounded-full p-6"
-                                />
-                                <Button className="rounded-full p-6" onClick={handleSignup}>Signup</Button>
-                            </TabsContent>
-                        </Tabs>
-                    </div>
-                </div>
-                <div className="hidden xl:flex justify-center items-center">
-                    <img src={Background} alt="background" className="h-[500px]" />
-                </div>
-            </div>
+   return (
+  <div
+  className="min-h-screen w-full bg-cover bg-center relative"
+  style={{
+    backgroundImage: `url('\loginc.jpg')`, // 🔁 Replace with your image path
+  }}
+>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/60 z-0" />
+
+  {/* Login Content */}
+  <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+    <div className="bg-white/10 backdrop-blur-md border border-white/10 shadow-2xl rounded-3xl w-full max-w-4xl grid grid-cols-1 xl:grid-cols-[2fr_1.5fr] overflow-hidden">
+
+      {/* Left - Form Area */}
+      <div className="p-8 flex flex-col gap-10 items-center justify-center">
+        <div className="text-center space-y-3">
+          <h1 className="text-white text-4xl sm:text-5xl font-bold flex items-center justify-center gap-2">
+            Welcome <img src={Victory} alt="Victory" className="h-10 w-10 sm:h-12 sm:w-12" />
+          </h1>
+          <p className="text-gray-300 text-sm sm:text-base">Fill in the details to get started with the Chatter Hub</p>
         </div>
-    );
+
+        <Tabs className="w-full max-w-md" defaultValue="login">
+          <TabsList className="flex justify-around bg-transparent">
+            <TabsTrigger
+              value="login"
+              className="text-white border-b-2 border-transparent w-full py-2 transition-all data-[state=active]:border-blue-500 data-[state=active]:text-blue-400 font-medium"
+            >
+              Login
+            </TabsTrigger>
+            <TabsTrigger
+              value="signup"
+              className="text-white border-b-2 border-transparent w-full py-2 transition-all data-[state=active]:border-blue-500 data-[state=active]:text-blue-400 font-medium"
+            >
+              Signup
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="login" className="mt-6 flex flex-col gap-5">
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+            />
+            <Input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+            />
+            <Button
+              onClick={handleLogin}
+              className="rounded-full px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold"
+            >
+              Login
+            </Button>
+          </TabsContent>
+
+          <TabsContent value="signup" className="mt-6 flex flex-col gap-5">
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+            />
+            <Input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+            />
+            <Input
+              placeholder="Confirm Password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="rounded-full px-6 py-4 bg-white/20 text-white placeholder:text-white/60 border border-white/10"
+            />
+            <Button
+              onClick={handleSignup}
+              className="rounded-full px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold"
+            >
+              Signup
+            </Button>
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      {/* Right - Image */}
+      <div className="hidden xl:flex items-center justify-center bg-white/10 p-4">
+        <img src={Background} alt="Background" className="h-92 object-contain" />
+      </div>
+    </div>
+  </div>
+  </div>
+);
+
+
 };
 
 export default Auth;

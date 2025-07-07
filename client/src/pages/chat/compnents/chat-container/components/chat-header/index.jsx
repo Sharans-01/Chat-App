@@ -10,39 +10,44 @@ const ChatHeader = () => {
   const { closeChat, selectedChatData, selectedChatType } = useAppStore();
 
   return (
-    <div className="h-[10vh] border-b-2 border-[#2f303b] flex items-center justify-between px-20">
-        <div className="flex gap-5 items-center w-full justify-between" >
-            <div className="flex gap-3 items-center justify-center ">
-              <div className="w-12 h-12 relative">
-                                      <Avatar className="h-12 w-12 rounded-full overflow-hidden">
-                                          {selectedChatData.image ? (
-                                              <AvatarImage 
-                                                  src={`${HOST}/${selectedChatData.image}`} 
-                                                  alt="profile" 
-                                                  className="object-cover w-full h-full bg-black"
-                                              />
-                                          ) : (
-                                              <div className={`uppercase h-12 w-12 text-lg border-[1px] flex items-center justify-center rounded-full ${getColor(selectedChatData.color)}`}>
-                                                  {selectedChatData.firstName 
-                                                      ? selectedChatData.firstName.charAt(0) 
-                                                      : selectedChatData.email.charAt(0)}
-                                              </div>
-                                          )}
-                                      </Avatar>
-                                  </div>
-                                  <div>
-                                          {selectedChatType === "contact" && selectedChatData.firstName ? `${selectedChatData.firstName}  ${selectedChatData.lastName }` : selectedChatData.email}
-                                  </div>
+  <div className="h-[10vh] min-h-[60px] px-4 sm:px-6 md:px-10 border-b border-[#cbd5e1] bg-[#f8fafc] flex items-center justify-between shadow-sm">
+    <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 relative shrink-0">
+        <Avatar className="h-full w-full rounded-full overflow-hidden">
+          {selectedChatData.image ? (
+            <AvatarImage
+              src={`${HOST}/${selectedChatData.image}`}
+              alt="profile"
+              className="object-cover w-full h-full bg-black"
+            />
+          ) : (
+            <div className={`uppercase h-full w-full text-sm sm:text-lg border flex items-center justify-center rounded-full ${getColor(selectedChatData.color)}`}>
+              {selectedChatData.firstName
+                ? selectedChatData.firstName.charAt(0)
+                : selectedChatData.email.charAt(0)}
             </div>
-            <div className="flex items-center justify-center gap-5">
-                <button className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all"
-                onClick={closeChat}>
-                    <RiCloseFill className="text-3xl "/>
-                </button>
-            </div>
-        </div>
+          )}
+        </Avatar>
+      </div>
+
+      <div className="text-sm sm:text-base md:text-lg font-medium text-gray-800 truncate max-w-[40vw] sm:max-w-[50vw]">
+        {selectedChatType === "contact" && selectedChatData.firstName
+          ? `${selectedChatData.firstName} ${selectedChatData.lastName}`
+          : selectedChatData.email}
+      </div>
     </div>
-  );
+
+    <button
+  className="text-gray-500 hover:text-red-500 transition-all duration-300 focus:outline-none ml-auto pr-2 sm:pr-4"
+  onClick={closeChat}
+>
+  <RiCloseFill className="text-2xl sm:text-3xl" />
+</button>
+
+  </div>
+);
+
+
 };
 
 export default ChatHeader

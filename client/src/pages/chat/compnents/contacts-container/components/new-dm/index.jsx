@@ -60,7 +60,7 @@ const NewDM = () => {
     <>
       <TooltipProvider>
   <Tooltip>
-    <TooltipTrigger><FaPlus className="text-neutral-400 font-light text-opacity-90 text-small hover:text-neutral-100 cursor-pointer tranisition-all duration-300" onClick={()=>setOpenNewContactModal(true)}/></TooltipTrigger>
+    <TooltipTrigger><FaPlus className="text-gray-500 hover:text-teal-600 cursor-pointer transition-all duration-300" onClick={()=>setOpenNewContactModal(true)}/></TooltipTrigger>
     <TooltipContent className="bg-[#1c1b1e] border-none mb-2 p-3 text-white">
       Select New Contact
     </TooltipContent>
@@ -126,10 +126,11 @@ const NewDM = () => {
         options={animationDefaultOptions}
         />
 
-        <div className="text-opacity-80 text-white flex flex-col gap-5 items-center mt-5 lg:text-2xl text-xl transition-all duration-300 text-center">
-            <h3 className="poppins-medium"> Hi<spam className="text-purple-500">! </spam>Search New
-            <span className="text-purple-500"> Contacts</span>  
-            </h3>
+        <div className="text-white text-600 flex flex-col gap-2 items-center mt-3 text-center">
+              <h3 className="font-medium text-lg">
+                Hi<span className="text-blue-600">! </span>Search New
+                <span className="text-blue-600"> Contacts</span>
+              </h3>
              </div>
         </div>
    )}

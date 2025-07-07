@@ -107,80 +107,117 @@ const Profile=()=>{
     }
   };
 
-  return(
-  <div className="bg-[#1b1c24] h-[100vh] flex-items-center justify-items-center flex-col gap-10">
-    <div className="flex flex-col gap-10 w-[80vw] md:w-max">
-      <div onClick={handleNavigate}>
-          <IoArrowBack className="text-4xl lg:text-6xl text-white/90 cursor-pointer"/>
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="h-full w-32 md:w-48 md:h-48 relative flex items-center justify-items-center"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        >
-          <Avatar className="h-32 w-32 md:h-48 md:w-48 rounded-full overflow-hidden" 
-          
-          >
-            {image ? (
-              <AvatarImage src={image} alt="profile" className="object-cover w-full h-full bg-black"/>
-            ) : (
-              <div className={`uppercase h-32 w-32 md:h-48 md:w-48 text-5xl border-[1px] flex items-center justify-center rounded-full ${getColor(selectedColor)}`}>
-                {firstName
-                ? firstName.split("").shift()
-                : userInfo.email.split("").shift()}
-              </div>
-              )}
-          </Avatar>
-          {
-            hovered && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50 ring-fuchsia-50 rounded-full"
-              onClick={image ? handleDeleteImage : handleFileInputClick}
-              >
-                {
-                  image ?(<FaTrash className="text-white text-3xl cursor-pointer"/> ):( <FaPlus className="text-white text-3xl cursor-pointer"/>
-                )}
-              </div>
-              )}
-              
-                <input type="file" ref={fileInputRef} className="hidden" onChange={handleImageChange} name="profile-image" accept=".png, .jpg, .jpeg, .svg, .webp"/>
-              
-          
-
-        </div>
-        <div className="flex min-w-32 md:min-w-64 flex-col gap-5 text-white items-center justify-center">
-          <div className="w-full">
-              <Input placeholder="Email" type="email" disabled value={userInfo.email} className="rounded-lg p-6 bg-[#2c2e3b] border-none"/>
-          </div>
-          <div className="w-full">
-              <Input placeholder="First Name" type="text" onChange={(e)=>setfirstName(e.target.value)} value={firstName} className="rounded-lg p-6 bg-[#2c2e3b] border-none"/>
-          </div>
-          <div className="w-full">
-              <Input placeholder="Last Name" type="text" onChange={(e)=>setlastName(e.target.value)} value={lastName} className="rounded-lg p-6 bg-[#2c2e3b] border-none"/>
-          </div>
-          <div className="w-full flex gap-5">
-  {
-    colors.map((color, index) => ( // Correctly destructuring `color` and `index`
-      <div 
-        className={`${color} h-8 w-8 rounded-full cursor-pointer transition-all duration-300 ${selectedColor===index ? "outline outline-white/60" : ""}`} 
-        key={index}
-        onClick={() => setselectedColor(index)}
-      >
-      </div>
-    ))
-  }
+  return (
+  <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e1e2f] to-[#0f172a]
+ flex items-center justify-center px-4 py-10">
+  <div className="w-full max-w-5xl flex flex-col items-center gap-10">
+      {/* Back Button aligned to left */}
+<div className="w-full flex justify-start">
+  <div onClick={handleNavigate} className="text-white cursor-pointer">
+    <IoArrowBack className="text-3xl sm:text-4xl" />
+  </div>
 </div>
 
+
+      {/* Profile Section */}
+      <div className="flex flex-col lg:flex-row gap-10 items-center lg:items-start">
+        {/* Avatar Section */}
+        <div
+          className="relative group w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <Avatar className="w-full h-full rounded-full overflow-hidden">
+            {image ? (
+              <AvatarImage
+                src={image}
+                alt="profile"
+                className="object-cover w-full h-full bg-black"
+              />
+            ) : (
+              <div className={`uppercase w-full h-full text-4xl md:text-5xl flex items-center justify-center rounded-full ${getColor(selectedColor)}`}>
+                {firstName ? firstName.charAt(0) : userInfo.email.charAt(0)}
+              </div>
+            )}
+          </Avatar>
+
+          {/* Hover Actions */}
+          {hovered && (
+            <div
+              className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center transition"
+              onClick={image ? handleDeleteImage : handleFileInputClick}
+            >
+              {image ? (
+                <FaTrash className="text-white text-2xl" />
+              ) : (
+                <FaPlus className="text-white text-2xl" />
+              )}
+            </div>
+          )}
+
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="hidden"
+            onChange={handleImageChange}
+            name="profile-image"
+            accept=".png, .jpg, .jpeg, .svg, .webp"
+          />
+        </div>
+
+        {/* Input Fields */}
+<div className="flex-1 w-80 max-w-md space-y-5 text-white">
+  <Input
+    placeholder="Email"
+    type="email"
+    disabled
+    value={userInfo.email}
+    className="rounded-lg p-5 bg-[#2c2e3b] border-none w-full"
+  />
+  <Input
+    placeholder="First Name"
+    type="text"
+    onChange={(e) => setfirstName(e.target.value)}
+    value={firstName}
+    className="rounded-lg p-5 bg-[#2c2e3b] border-none w-full"
+  />
+  <Input
+    placeholder="Last Name"
+    type="text"
+    onChange={(e) => setlastName(e.target.value)}
+    value={lastName}
+    className="rounded-lg p-5 bg-[#2c2e3b] border-none w-full"
+  />
+
+          {/* Color Picker */}
+          <div className="flex gap-7 flex-wrap">
+            {colors.map((color, index) => (
+              <div
+                key={index}
+                className={`${color} h-8 w-8 rounded-full cursor-pointer transition-all duration-300 ${
+                  selectedColor === index ? "ring-2 ring-white/60" : ""
+                }`}
+                onClick={() => setselectedColor(index)}
+              ></div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="w-full">
-        <Button className="h-16 w-full bg-purple-700 hover:bg-purple-900 transition-all duration-300"
-        onClick={saveChanges}>
-          Save Changes
-        </Button>
-      </div>
+
+      {/* Save Button */}
+      <div className="w-full flex justify-center">
+  <Button
+    className="h-14 w-full max-w-md bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 text-lg text-white rounded-md"
+    onClick={saveChanges}
+  >
+    Save Changes
+  </Button>
+</div>
+
     </div>
   </div>
-  );
+);
+
 };
 
 

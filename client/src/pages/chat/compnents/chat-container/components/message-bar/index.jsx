@@ -96,17 +96,23 @@ const MessageBar = () => {
     };
 
     return (
-        <div className="min-h-[10vh] bg-[#1c1d25] flex items-center justify-center px-8 gap-6 
-        sticky bottom-0 w-full border-t border-gray-700 z-50">
+        <div className="min-h-[10vh] bg-[#fcfdfd] flex items-center justify-center px-8 gap-6 
+        sticky bottom-0 w-full border-t border-gray-100 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.1)]">
+
             
-            <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center gap-5 pr-5">
+            <div className="flex-1 flex bg-[#ffffff] rounded-full px-4 items-center border border-black/80 gap-5 pr-5">
                 <input 
                     type="text" 
-                    className="flex-1 p-5 bg-transparent rounded-md 
+                    className="flex-1 p-4 bg-transparent rounded-md text-black 
                     focus:border-none focus:outline-none"
-                    placeholder="Enter Message"
+                    placeholder="Type a message..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => {
+    if (e.key === "Enter" && message.trim() !== "") {
+      handleSendMessage();
+    }
+  }}
                 />
     
                 <button className="text-neutral-500 hover:text-white transition-all duration-300" onClick={handleAttachmentClick}>
@@ -135,12 +141,13 @@ const MessageBar = () => {
                 </div>
             </div>
     
-            <button 
-    className="bg-[#8417ff] rounded-md flex items-center justify-center p-5 focus:border-none hover:bg-[#741bda] focus:bg-[#741bda] focus:outline-none focus:text-white duration-300 transition-all "
-    onClick={handleSendMessage}
->
-                <IoSend className="text-2xl text-white" />
-            </button>
+           <button
+      onClick={handleSendMessage}
+      className="bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 p-3 sm:p-4 rounded-full shadow-lg"
+    >
+      <IoSend className="text-white text-xl sm:text-2xl" />
+    </button>
+
         </div>
     );
     

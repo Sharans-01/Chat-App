@@ -8,6 +8,9 @@ import { useAppStore } from './store'
 import { useState } from 'react'
 import apiClient from './lib/api-client'
 import { GET_USER_INFO } from './utils/constants'
+import Lottie from "lottie-react";
+import loadingAnimation from "@/assets/loading.json"; // adjust path as per your project
+
 
 const PrivateRoute=({children})=>{
   const {userInfo}=useAppStore()
@@ -55,10 +58,21 @@ const App = () => {
       
     },[userInfo,setUserInfo]);
 
-    if(loading) {
-      return <div>Loading...</div>
- 
-    }
+   if (loading) {
+  return (
+    <div className="flex flex-col justify-center items-center h-screen w-full bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800">
+      <Lottie 
+        animationData={loadingAnimation} 
+        loop={true} 
+        className="w-40 h-40 md:w-56 md:h-56"
+      />
+      <p className="mt-6 text-white text-lg md:text-xl font-medium animate-pulse">
+        Loading, please wait...
+      </p>
+    </div>
+  );
+}
+
   
 
   return (
